@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css?family=Space+Mono");
+
+:root {
+  --white: #fefefe;
+}
+
+/* Estilos gerais  */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Space Mono";
+}
+
+button,
+input {
+  border: none;
+  background-color: var(--white);
+  border: 0.5px solid #333;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Estilos da calculadora  */
+.calculator {
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 5px;
+  background-color: lightgray;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Estilo do  input */
+
+.input {
+  width: 100%;
+  height: 60px;
+  max-height: 70px;
+  background-color: #333;
+  text-align: right;
+  color: #fefefe;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  border: none;
+  padding: 5px 5px;
+}
+
+.operation {
+  color: #fefefe;
+  font-size: 1rem;
+  background-color: #333;
+}
+
+/* Retirando a seta q vem por default  */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.calculator-buttons {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
+}
+
+.calc-button {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #111;
+  padding: 20px;
+  color: #eee;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.history-button {
+  width: auto;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  margin-bottom: 1em;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: #eee;
+  font-size: 22px;
+  text-align: center;
+}
+
+.is-zero,
+.is-clear {
+  grid-column: span 3;
+}
+
+.is-clear {
+  background: #3572db;
+}
+
+.is-equals {
+  background: #28d060;
+}
+
+button:disabled {
+  background-color: darkgray !important;
+  cursor: default;
+}
