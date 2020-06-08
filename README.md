@@ -1,24 +1,24 @@
 # Calculator
 Project developed to conclude the software engineering laboratory subject
 
-# Installatation
+### Installatation
 Installing virtualenv:
 ``` 
 pip install virtualenv
 ```
-# Creating env
+### Creating env
 ```
 virtualenv venv
 ```
-# Accessing env
+### Accessing env
 ```
 source venv/bin/activate
 ```
-Installing dependencies:
+### Installing dependencies:
 ``` 
 pip install -r requirements.txt
 ```
-Starting app:
+### Starting app:
 ```
 python app.py
 ```
