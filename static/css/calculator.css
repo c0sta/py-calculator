@@ -2,6 +2,10 @@
 
 :root {
   --white: #fefefe;
+  --black: #333;
+  --light-black:  rgba(0, 0, 0, 0.5);
+  --green: #28d060;
+  --blue: #3572db;
 }
 
 /* Estilos gerais  */
@@ -16,7 +20,7 @@ button,
 input {
   border: none;
   background-color: var(--white);
-  border: 0.5px solid #333;
+  border: 0.5px solid var(--black);
 }
 
 html,
@@ -46,7 +50,7 @@ body {
   width: 100%;
   height: 60px;
   max-height: 70px;
-  background-color: #333;
+  background-color: var(--black);
   text-align: right;
   color: #fefefe;
   font-size: 1.5rem;
@@ -58,7 +62,7 @@ body {
 .operation {
   color: #fefefe;
   font-size: 1rem;
-  background-color: #333;
+  background-color: var(--black);
 }
 
 /* Retirando a seta q vem por default  */
@@ -76,7 +80,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .calc-button {
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--light-black);
   border: 1px solid #111;
   padding: 20px;
   color: #eee;
@@ -88,7 +92,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .history-button {
   width: auto;
   height: 40px;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--light-black);
   margin-bottom: 1em;
   padding: 0.5em;
   cursor: pointer;
@@ -101,8 +105,7 @@ a {
   text-align: center;
 }
 
-.is-zero,
-.is-clear {
+.is-zero {
   grid-column: span 3;
 }
 

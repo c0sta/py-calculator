@@ -1,0 +1,24 @@
+:root {
+  --label: #131313;
+}
+
+.login-container {
+  transform: translate(50%, 50%);
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.login-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #d3d3d3;
+  width: 20em;
+  height: 20em;
+}
+
+.login-card__label {
+  color: black;
+}
