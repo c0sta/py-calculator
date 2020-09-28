@@ -13,7 +13,7 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('cadastro.html')
+    return render_template('register.html')
 
 @app.route('/calculator', methods=['GET', 'POST'])
 def calculator():
@@ -23,6 +23,3 @@ def calculator():
 def history():
     return render_template('history.html')
 
-
-if __name__ == '__main__':
-    app.run(debug=True)

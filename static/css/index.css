@@ -2,6 +2,18 @@
   --label: #131313;
 }
 
+html, body, form {
+  margin:0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
 .login-container {
   transform: translate(50%, 50%);
   background-color: white;
