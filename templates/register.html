@@ -1,18 +1,90 @@
-<!DOCTYPE html>
+{% extends "prelogin-layout.html" %}
+
+{% block title %} Registrar-se {% endblock title %}
+
+{% block content %}
+    <form method="POST" action="{{ url_for('register') }}" class="card" >
+        <div>
+            {{ form.username(class='card__input', placeholder='Nome de usuário', autofocus=true) }}
+            <lu>
+                {% for error in form.username.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </lu>
+        </div>
+
+        <div>
+            {{form.password(class='card__input', placeholder='Insira sua senha')}}
+            <lu>
+                {% for error in form.password.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </lu>
+            
+        </div>
+        <div>
+            {{form.confirm_password(class='card__input', placeholder='Insira sua senha novamente')}}
+
+            <lu>
+                {% for error in form.confirm_password.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </lu>
+        </div>
+        <div>
+            <a href="/">Voltar</a>
+            <input type="submit" value="Criar conta" id="submit">
+        </div>
+
+        {{ form.csrf_token }}
+    </form>
+{% endblock %}
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/css/register.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
     <title>Cadastre-se</title>
 </head>
 <body>
-    <form>
-        <button><a href="/">Voltar para Login</a></button>
-        <label>Username</label>
-        <input placeholder="Insira seu nome de usuário" type="text" />
-        <label>Senha</label>
-        <input placeholder="Insira sua senha" type="password"/>
-        <button type="submit">Cadastrar-se</button>
+    <header class="header">
+        <button class="header__button"><a href="/">Voltar para Login</a></button>
+    </header>
+    <form class="card" id="form" >
+
+        <div>
+            <label class="card__label">Username</label>
+            <input 
+                placeholder="Insira seu nome de usuário" 
+                type="text" 
+                name="username"
+                class="card__input"
+            />
+            <span class=".message-name" hidden></span>
+        </div>
+
+        <div>
+            <label class="card__label">Senha</label>
+            <input
+                name="password"
+                placeholder="Insira sua senha" 
+                type="password" 
+                class="card__input"
+            />
+        </div>  
+        <button id="submit" type="submit" >Cadastrar-se</button>
     </form>
+
+
+    <script src="../static/js/register.js"></script>
 </body>
-</html>
+</html> -->

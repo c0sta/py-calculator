@@ -1,4 +1,40 @@
-<!DOCTYPE html>
+{% extends "prelogin-layout.html" %}
+
+{% block title %} Entrar {% endblock title %}
+
+{% block content %}
+    <form method="POST" action="" class="card" >
+        <div>
+            {{ form.username(class='card__input', placeholder='Nome de usuário', autofocus=true) }}
+            <lu>
+                {% for error in form.username.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </lu>
+        </div>
+
+        <div>
+            {{form.password(class='card__input', placeholder='Insira sua senha')}}
+            <lu>
+                {% for error in form.password.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </lu>
+            
+        </div>
+        <div>
+            <input type="submit" value="Entrar" id="submit">
+        </div>
+        <div>
+            <a href="/register"> Crie uma conta! </a>
+        </div>
+
+        {{ form.csrf_token }}
+    </form>
+{% endblock %}
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -20,4 +56,4 @@
         </form>
     </body>
 
-</html>
+</html> -->

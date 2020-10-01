@@ -5,11 +5,18 @@
      <meta charset="UTF-8" />
      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
      <link href="../static/css/calculator.css" rel="stylesheet" />
-     <link rel="shortcut icon" href="#">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
      <title>Calculator</title>
  </head>
 
  <body>
+    <!-- Botao "View history" -->
+    <button class="history-button">
+        <a href="/logout">Logout!</a>
+    </button>
+   
      <!-- Botao "View history" -->
      <button class="history-button">
          <a href="/history">View history!</a>
@@ -18,37 +25,36 @@
      <!-- Calculadora  -->
      <form name="calculator" method="POST" class="calculator" target="hiddenFrame">
 
-
-         <!-- Adicionei o min="0" p/ que não seja possível adicionar numeros negativos -->
-         <input name="input" type="number" class="input" required />
-
+         <input name="input" type="text"  class="input" required maxlength="20"/>
 
          <section class="calculator-buttons">
              <button name="clear" class="calc-button is-clear" type="button">
                  C
              </button>
-             <button name="operation" type="button" class="calc-button"> a¹ </button>
-             <button name="operation" type="button" class="calc-button"> √𝑎 </button>
-             <button name="operation" type="button" class="calc-button"> / </button>
+             <button name="operation" type="button" class="calc-button" value="radiacao">^</button>
+             <button name="operation" type="button" class="calc-button" value="raiz" >√</button>
+             <button name="operation" type="button" class="calc-button" value="divisao">/</button>
 
-             <button name="digit" class="calc-button" type="button">7</button>
-             <button name="digit" class="calc-button" type="button">8</button>
-             <button name="digit" class="calc-button" type="button">9</button>
-             <button name="operation" type="button" class="calc-button"> x </button>
-             <button name="digit" class="calc-button" type="button">4</button>
-             <button name="digit" class="calc-button" type="button">5</button>
-             <button name="digit" class="calc-button" type="button">6</button>
-             <button name="operation" type="button" class="calc-button"> - </button>
-             <button name="digit" class="calc-button" type="button">1</button>
-             <button name="digit" class="calc-button" type="button">2</button>
-             <button name="digit" class="calc-button" type="button">3</button>
-             <button name="operation" id="digit" type="button" class="calc-button"> + </button>
-             <button name="digit" class="calc-button is-zero">0</button>
-             <button name="calculate" type="submit" formaction="/calculate" class="calc-button is-equals">
+             <button name="digit" class="calc-button" type="button" value="7">7</button>
+             <button name="digit" class="calc-button" type="button" value="">8</button>
+             <button name="digit" class="calc-button" type="button" value="9">9</button>
+             <button name="operation" type="button" class="calc-button" value="multiplicacao">x</button>
+             <button name="digit" class="calc-button" type="button" value="4">4</button>
+             <button name="digit" class="calc-button" type="button" value="5">5</button>
+             <button name="digit" class="calc-button" type="button" value="6">6</button>
+             <button name="operation" type="button" class="calc-button" value="subtracao">-</button>
+             <button name="digit" class="calc-button" type="button" value="1">1</button>
+             <button name="digit" class="calc-button" type="button" value="2">2</button>
+             <button name="digit" class="calc-button" type="button" value="3">3</button>
+             <button name="operation" type="button" class="calc-button" value="soma">+</button>
+             <button name="digit" class="calc-button is-zero" value="0">0</button>
+             <button name="calculate" type="submit" formaction="/calculate" class="calc-button is-equals" value="0">
                  =
              </button>
          </section>
      </form>
+     <script src="../static/js/calculator.js"></script>
+     
  </body>
 
  </html>
