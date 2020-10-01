@@ -1,19 +1,28 @@
-from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from mashmallow import Schema, fields, pre_load, validate, ValidationError
-from flask_marshmallow import Marshmallow 
+from flask_login import UserMixin, login_manager
+from passlib.hash import pbkdf2_sha256
 
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:1234@localhost/users'
 db = SQLAlchemy()
 
-class User(db.Model):
+
+class User(db.Model, UserMixin):
     # nome da tabela
-    __tablename__ = 'user'
+    __tablename__ = 'users'
+    
     # colunas
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
+    username = db.Column(db.String(30), unique=True, nullable=False)
+    password = db.Column(db.String(16), nullable=False)
+    history = db.Column(db.LargeBinary())
+    
+    def __init__(self, username, password):
+        self.username = username
+        self.password = pbkdf2_sha256.hash(password)
+
+    # Valida a senha criptografada 
+    def verify_password(self, password):
+        return pbkdf2_sha256.verify(self.password, password)
 
     def __repr__(self):
         return '<User %r>' % self.username
+
