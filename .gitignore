@@ -22,6 +22,8 @@ lib64/
 parts/
 sdist/
 var/
+__pycache__/
+flask_session/
 *.egg-info/
 .installed.cfg
 *.egg
