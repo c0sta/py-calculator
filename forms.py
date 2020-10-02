@@ -63,3 +63,7 @@ class LoginForm(FlaskForm):
             validators=[
                 InputRequired(message="Insira sua senha"), invalid_credentials])
         submit_button = SubmitField('Entrar')
+
+
+class CalculatorForm(FlaskForm):
+    operation = StringField('operation', validators=[InputRequired(message="Insira a operação!")])

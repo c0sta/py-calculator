@@ -9,8 +9,14 @@
 
 <body>
     Página do Histórico
-    <button><a href="/calculator">Voltar para Calculadora</a></button>
+    <button class="history-button"><a href="/calculator">Voltar para Calculadora</a></button>
+    
+    <!--Aqui é o meu template da pagina de historico-->
+    <lu class="history">
+        {% for history in history_list %}
+            <li class="history__message">{{ history }}</li>
+        {% endfor %}
+    </lu>
 </body> 
 
-<!--Aqui é o meu template da pagina de historico-->
 </html>

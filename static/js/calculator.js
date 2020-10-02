@@ -12,9 +12,9 @@ buttons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
     let clickedButton = event.target.textContent;
-    console.log(clickedButton)
+    // console.log(clickedButton)
     let operationText = (input.value += clickedButton)
-    console.log(operationText, clickedButton.value);
+    // console.log(operationText, clickedButton.value);
   });
 });
 
@@ -28,28 +28,31 @@ let clearButton = document.querySelector('[name="clear"]').addEventListener('cli
 })
 
 
-let calculateButton = document
-  .querySelector('[name="calculate"]')
-  .addEventListener("click", (event) => {
-    event.preventDefault()
-    let mathAccount = input.value
-    let splited = mathAccount.match(/[^\d()]+|[\d.]+/g)
-    console.log(splited)
-    
-    let data = {
-      numberOne: splited[0],
-      numberTwo: splited[2],
-      operator: splited[1],
-    }
-   // Enviar para o BECKEND
-    console.log(data)
-   
-    // fetch("http://localhost:5304/calculate", {
-    //   method: "POST",
-    //   body: {data: input.value},
-    // })
-    //   .then((response) => {
-    //     return response.json(); 
-    //   })
-    //   .then((data) => input.value = data.result)
+$(function() {
+  $('#calculate').click(function(event) {
+      event.preventDefault()
+      let mathAccount = input.value
+      let splited = mathAccount.match(/[^\d()]+|[\d.]+/g)
+      console.log(splited)
+      
+      let data = {
+        numberOne: splited[0],
+        numberTwo: splited[2],
+        operator: splited[1],
+      }
+      
+      $.ajax({
+          url: '/calculate',
+          data: $('#operation').serialize(),
+          type: 'POST',
+          success: async function(response) {
+              console.log('Resultado calculado com sucesso', response)
+          },
+          error: function(error) {
+           console.log(error)
+          }
+      }).done(function(arg){
+        $('input:text').val(arg.resultado)
+      })
   });
+});
