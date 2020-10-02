@@ -4,6 +4,12 @@
 
 {% block content %}
     <form method="POST" action="" class="card" >
+        {% block header %}
+
+        <h2 class="card__title">
+            Entrar 
+        </h2>
+        {% endblock %}
         <div>
             {{ form.username(class='card__input', placeholder='Nome de usuário', autofocus=true) }}
             <lu>
@@ -26,34 +32,10 @@
             <input type="submit" value="Entrar" id="submit">
         </div>
         <div>
-            <a href="/register"> Crie uma conta! </a>
+            <a href="/register" class="card__back-button">  Crie uma conta! </a>
         </div>
 
         {{ form.csrf_token }}
     </form>
 {% endblock %}
 
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-    <head>
-        <title>Login</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="../static/css/index.css" rel="stylesheet" />
-
-    </head>
-
-    <body class="login-container">
-        <form method="POST" action="/calculator" class="login-card" >
-            <label class="login-card__label">Username</label>
-            <input class="login-card__input" required type="text" name="username" />
-            <label class="login-card__label">Password</label>
-            <input class="login-card__input" required type="password" name="password" />
-            <button type="submit">Login</button>
-            <button><a href="/register">Registrar-se</a></button>
-        </form>
-    </body>
-
-</html> -->
