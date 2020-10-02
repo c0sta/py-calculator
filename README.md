@@ -1,6 +1,8 @@
 # Calculator
 Project developed to conclude the software engineering laboratory subject
 
+Link para o video no youtube: https://youtu.be/tFyzO1wyjq0
+
 ### Installatation
 Installing virtualenv:
 ``` 
