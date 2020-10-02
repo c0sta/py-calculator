@@ -4,19 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../static/css/history.css"/>
+
     <title>Histórico</title>
 </head>
 
 <body>
-    Página do Histórico
+        
     <button class="history-button"><a href="/calculator">Voltar para Calculadora</a></button>
     
-    <!--Aqui é o meu template da pagina de historico-->
-    <lu class="history">
-        {% for history in history_list %}
-            <li class="history__message">{{ history }}</li>
-        {% endfor %}
-    </lu>
+    <div class="history-card">
+        <lu class="history-list">
+            {% for history in history_list %}
+                <li class="history-list__message" >{{ history }}</li>
+            {% endfor %}
+        </lu>
+
+    </div>
+
 </body> 
 
 </html>

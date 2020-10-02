@@ -2,8 +2,20 @@
 
 {% block title %} Registrar-se {% endblock title %}
 
+
+
+
 {% block content %}
+
+
     <form method="POST" action="{{ url_for('register') }}" class="card" >
+        {% block header %}
+        <h2 class="card__title">
+            Registre-se
+        </h2>
+        {% endblock %}
+    
+
         <div>
             {{ form.username(class='card__input', placeholder='Nome de usuário', autofocus=true) }}
             <lu>
@@ -32,59 +44,12 @@
             </lu>
         </div>
         <div>
-            <a href="/">Voltar</a>
             <input type="submit" value="Criar conta" id="submit">
+        </div>   
+        <div>
+            <a href="/" class="card__back-button">Voltar</a>
         </div>
 
         {{ form.csrf_token }}
     </form>
 {% endblock %}
-
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../static/css/register.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-    <title>Cadastre-se</title>
-</head>
-<body>
-    <header class="header">
-        <button class="header__button"><a href="/">Voltar para Login</a></button>
-    </header>
-    <form class="card" id="form" >
-
-        <div>
-            <label class="card__label">Username</label>
-            <input 
-                placeholder="Insira seu nome de usuário" 
-                type="text" 
-                name="username"
-                class="card__input"
-            />
-            <span class=".message-name" hidden></span>
-        </div>
-
-        <div>
-            <label class="card__label">Senha</label>
-            <input
-                name="password"
-                placeholder="Insira sua senha" 
-                type="password" 
-                class="card__input"
-            />
-        </div>  
-        <button id="submit" type="submit" >Cadastrar-se</button>
-    </form>
-
-
-    <script src="../static/js/register.js"></script>
-</body>
-</html> -->

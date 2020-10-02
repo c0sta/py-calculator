@@ -12,19 +12,24 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
     
     # colunas
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(30), unique=True, nullable=False)
-    password = db.Column(db.String(16), nullable=False)
-    history = db.Column(db.ARRAY(String))
+    id = db.Column('id', db.Integer, primary_key=True)
+    username = db.Column('username', db.String(30), unique=True, nullable=False)
+    password = db.Column('password',db.String(16), nullable=False)
+    history = db.Column('history', db.ARRAY(String))
     
+    metadata = MetaData()
+
+    users_table = Table('users', metadata,
+            id,
+            username,
+            password,
+            history,
+            extend_existing=True   
+    )
+
     def __init__(self, username, password):
         self.username = username
         self.password = pbkdf2_sha256.hash(password)
-
-    def update_history(array, table, user, connection):
-        update = table.update().where(user.id == current_user.id).values(history=array)
-        connection.execute(update)
-        connection.close()
 
     # Valida a senha criptografada 
     def verify_password(self, password):

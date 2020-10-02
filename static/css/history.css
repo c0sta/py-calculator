@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css?family=Space+Mono");
+
+:root {
+    --font: "Space Mono";
+    --label: #131313;
+    --green: #28d060;
+    --light-black:  rgba(0, 0, 0, 0.5);
+    --blue: #3572db;
+}
+
+
+
+html, body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin:0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100%;
+  }
+
+.history-card {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: lightgray;
+    padding: 15;
+    width: 85%;
+    height: 85%;
+    border: 15;
+    box-shadow: -5px 11px 30px -10px rgba(0,0,0,0.47);
+    -webkit-box-shadow: -5px 11px 30px -10px rgba(0,0,0,0.30);
+    -moz-box-shadow: -5px 11px 30px -10px rgba(0,0,0,0.30);
+}
+
+.history-list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    height: 90%;
+    padding: 15;
+
+}
+
+ul, li {
+    margin:0;
+    padding: 0;
+    text-indent: 0;
+    list-style-type: 0;
+}
+.history-list__message {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 10;
+    width: 95%;
+    height: 50px;
+    border-radius: 15;
+    list-style: none;
+    background-color: #f1f1f1;
+    margin-bottom: 2em;
+    font-size: 1.3em;
+    font-weight: 600;
+    font-family: var(--font);
+}
+
+.history-button {
+    width: auto;
+    height: 40px;
+    background: var(--light-black);
+    margin-bottom: 1em;
+    padding: 0.5em;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+  }
+  
