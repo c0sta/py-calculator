@@ -1,3 +1,6 @@
+from controllers.user_controller import UserController
+from controllers.history_controller import HistoryController
+from controllers.calculate_controller import CalculateController
 from forms import CalculatorForm, LoginForm, RegistrationForm
 from flask import Flask, make_response, render_template, redirect, url_for, flash, request, make_response, jsonify
 from flask_sqlalchemy import SQLAlchemy
@@ -30,8 +33,6 @@ login.init_app(app)
 
 db = SQLAlchemy(app)
 
-history_array = []
-
 # Usuário que está logado
 @login.user_loader
 def get_user(id):
@@ -43,11 +44,11 @@ def login():
     login_form = LoginForm()
 
     if login_form.validate_on_submit():
-        user_object = User.query.filter_by(username=login_form.username.data).first()
-        # Loga o usuário
-        login_user(user_object)
+        
+        user_login = UserController.login(username=login_form.username.data)
+
         # Verifica se o usuário está autenticado
-        if  current_user.is_authenticated:
+        if  current_user.is_authenticated and user_login == True:
             return redirect(url_for('calculator'))
 
         print(current_user.is_authenticated)
@@ -56,24 +57,17 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-
     # Instancia o formulario de registro
     register_form = RegistrationForm()
 
+    # Valida o formulário
     if register_form.validate_on_submit():
 
-        # Peega os dados do form
-        username = register_form.username.data
-        password = register_form.password.data
+        # Chama o controller que irá registar
+        user = UserController.register(username=register_form.username.data, password=register_form.password.data)
 
-        # Cria o usuário
-        user = User(username=username, password=password)
-
-        # Salva o usuário no BD
-        db.session.add(user)
-        db.session.commit()
-
-        flash('Registered successfully. Please login.')
+        if user == True:
+            flash('Registered successfully. Please login.')
         return redirect(url_for('login'))
 
     return render_template('register.html', form=register_form)
@@ -94,61 +88,20 @@ def calculate():
     calculator_form = CalculatorForm()
     operation = calculator_form.operation.data
 
-    potenciacao = re.split('\s', operation)
     user = User.query.get(current_user.id)
-    print(user)
-    # history = []
 
-    if potenciacao[1] == "^":
-        num1 = int(potenciacao[0])
-        num2 = int(potenciacao[2])
-        resultado = pow(num1, num2)
-        
-        # Mensagem que será salva no histórico
-        history_message = create_history_message(username=user.username, operation=operation, result=resultado)
-        
-        # Adiciona no array 
-        history_array.insert(-1, history_message)
+    result_object = CalculateController.calculate(operation=operation, username=user.username)
 
-        # Atualiza tabela no bd
-        # user.update_history(array=history_array, table=)
-
-        return jsonify({ "resultado": resultado })
-
-    elif potenciacao[1] == u"\u221A":
-        resultado = math.sqrt(int(potenciacao[2]))
-        history_message = create_history_message(username=user.username,  operation=operation, result=resultado)
-        
-        history_array.insert(-1, history_message)
-
-        # user.update_history(array=history_array, table=)
-
-        return jsonify({ "resultado": resultado })
-
-    else:
-        resultado = eval(operation)
-        history_message = create_history_message(username=user.username,  operation=operation, result=resultado)
-        history_array.insert(-1, history_message)
-
-        # user.update_history(array=history_array, table=)
-
-
-        return jsonify({ "resultado": resultado })
+    return result_object
         
 @app.route('/history', methods=['GET'])
 def history():
     if not current_user.is_authenticated:
         return "Acesse sua conta para acessar o histórico de operações!"
     
-    print(history_array)
-    return render_template('history.html', history_list=history_array)
-
-
-def create_history_message(username, operation, result):
-     today = datetime.datetime.now()
-     hour = "{}:{}".format(today.hour, today.minute)
-     print(hour)
-     return '{} - {} : {} = {}'.format(username, hour, operation, result)
+    arr = HistoryController.get_history()
+    print(arr)
+    return render_template('history.html', history_list=arr)
 
 
 @app.route("/logout", methods=['GET'])
@@ -157,8 +110,6 @@ def logout():
     logout_user()
     print('Desconectado com sucesso!')
     return redirect(url_for('login'))
-
-
 
 @app.errorhandler(404)
 def page_not_found(e):
