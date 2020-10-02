@@ -1,7 +1,10 @@
 
 
 import datetime
+from models.userModel import User
 
+from sqlalchemy.sql.functions import current_user
+from sqlalchemy import update
 
 history_array = [] 
 
@@ -18,7 +21,14 @@ class HistoryController():
             history_message = '{} - {} : {} = {}'.format(username, hour, operation, result)
             
             history_array.append(history_message)
+
             print(history_array)
+            
+            user = User.query.filter_by(username=username).first()
+            users = User.users_table
+            
+            users.update().where(users.c.id == user.id).values(history=history_array)
+
             return 'Adicionado ao histórico!'
         else:
             return "Erro ao adicionar ao histórico, algum valor está faltando"
