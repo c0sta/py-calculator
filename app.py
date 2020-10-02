@@ -7,9 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from models.userModel import *
 import psycopg2
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
-import re
-import math
-import datetime
+
 
 # Init app
 app = Flask(__name__)
@@ -67,7 +65,7 @@ def register():
         user = UserController.register(username=register_form.username.data, password=register_form.password.data)
 
         if user == True:
-            flash('Registered successfully. Please login.')
+            print('Registrado com sucesso! ')
         return redirect(url_for('login'))
 
     return render_template('register.html', form=register_form)

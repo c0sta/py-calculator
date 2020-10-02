@@ -34,6 +34,16 @@ class CalculateController():
 
 
             return jsonify({'resultado': resultado})
+        elif potenciacao[1] == "/":
+
+            # Realiza o cálculo de radiação
+            if potenciacao[2] != 0 and potenciacao[0] != 0:
+                resultado = eval(operation)
+                # Cria a mensagem e adiciona ao histórico
+                HistoryController.create_history_message(username=username,  operation=operation, result=resultado)
+                return jsonify({'resultado': resultado})
+            return jsonify({'resultado': 'Inválido'})
+
         else:
             
             # Realiza o cálculo de Soma, subtração, multiplicação e divisão

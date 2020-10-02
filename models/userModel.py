@@ -10,7 +10,7 @@ db = SQLAlchemy()
 class User(db.Model, UserMixin):
     # nome da tabela
     __tablename__ = 'users'
-    __table_args__ = {'extend_existing': True}
+    
     # colunas
     id = db.Column('id', db.Integer, primary_key=True)
     username = db.Column('username', db.String(30), unique=True, nullable=False)

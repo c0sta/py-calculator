@@ -4,34 +4,83 @@
     --font: "Space Mono";
     --label: #131313;
     --green: #28d060;
+    --blue: #3572db;
 }
 
-html, body, form {
+html, body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin:0;
   padding: 0;
   border: 0;
   font: inherit;
   vertical-align: baseline;
   box-sizing: border-box;
-}
-
-.login-container {
-  transform: translate(50%, 50%);
-  background-color: white;
+  height: 100vh;
   width: 100%;
-  height: 100%;
 }
 
-.login-card {
+.card {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-self: center;
   flex-direction: column;
-  background-color: #d3d3d3;
-  width: 20em;
-  height: 20em;
+  align-items: center;
+  justify-content: space-around;
+  background-color: lightgray;
+  padding: 15;
+  width: 25em;
+  height: 30em;
+  border: 15;
+  box-shadow: -5px 11px 30px -10px rgba(0,0,0,0.47);
+  -webkit-box-shadow: -5px 11px 30px -10px rgba(0,0,0,0.30);
+  -moz-box-shadow: -5px 11px 30px -10px rgba(0,0,0,0.30);
+}
+.card__label {
+  font-family: var(--font);
+  font-size: 1.2em;
+  color: #313131;
+}
+.card__input {
+  font-family: var(--font);
+  font-size: 0.8em;
+  width: 100%;
+  height: 35px;
+  border-radius: 15;
+  padding: 15;
 }
 
-.login-card__label {
-  color: black;
+.card__title {
+  font-family: var(--font);
+  font-size: 1.em;
+  font-weight: 600;
+}
+
+.card__back-button, .card__back-button:visited  {
+  font-size: 0.8;
+  font-family: var(--font);
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.card__back-button:hover {
+  font-size: 1em;
+  color: #1e4280;
+}
+
+
+#submit {
+  width: 10em;
+  height: 50px;
+  border-radius: 15;
+  border: none;
+  font-family: var(--font);
+  font-size: 1em;
+  background-color: var(--green);
+  cursor: pointer;
+  transition: 1s;
+}
+
+#submit:hover {
+  background-color: #61f193;
 }
